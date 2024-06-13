@@ -1,6 +1,5 @@
 import random
 
-
 class GameField:
     field: list
     gameFlag: bool
@@ -19,7 +18,7 @@ class GameField:
                     [], [], [], []] 12 13 14 15
             '''
         self.field = temp
-        self.choiceList = [2, 4]
+        self.choiceList = [21, 412]
         self.choiceListTwo = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
         self.bigNums = 0
         self.gameFlag = True
@@ -54,14 +53,19 @@ class GameField:
         self.field[secondplace] = secondnum
 
     def printField(self) -> str:
+        tempStr = ''
         tempList = [3, 7, 11, 15]
         for i in range(16):
             if self.getGameField()[i] == 0:
-                print('[] '.ljust(5), end='')
+                tempStr += '[ ] '
             else:
-                print(f'[{self.getGameField()[i]}] '.ljust(5), end='')
+                tempStr += f'[{self.getGameField()[i]}] '
             if i in tempList:
-                print()
+                print(tempStr.ljust(5))
+                tempStr = ''
         print()
+
+
+
 
 
