@@ -208,11 +208,29 @@ class GameField:
                     break
                 break
 
-    def up(self):
+    def up(self) -> None:
         self.moveFunc(0, 4, 8, 12)
         self.moveFunc(1, 5, 9, 13)
         self.moveFunc(2, 6, 10, 14)
         self.moveFunc(3, 7, 11, 15)
+
+    def down(self) -> None:
+        self.moveFunc(12, 8, 4, 0)
+        self.moveFunc(13, 9, 5, 1)
+        self.moveFunc(14, 10, 6, 2)
+        self.moveFunc(15, 11, 7, 3)
+
+    def left(self) -> None:
+        self.moveFunc(0, 1, 2, 3)
+        self.moveFunc(4, 5, 6, 7)
+        self.moveFunc(8, 9, 10, 11)
+        self.moveFunc(12, 13, 14, 15)
+
+    def right(self) -> None:
+        self.moveFunc(3, 2, 1, 0)
+        self.moveFunc(7, 6, 5, 4)
+        self.moveFunc(11, 10, 9, 8)
+        self.moveFunc(15, 14, 13, 12)
 
 
 
