@@ -1,27 +1,49 @@
 from GameField import GameField
-
+import sys
 
 def main():
-    print("ПРИВЕТСТВУЮ В ИГРУ 2048!!!! ГОТОВЫ НАЧАТЬ????? (Y/N): ", end='')
+    print("Welcome to 2048. Ready to start? (Y/N): ", end='')
     answer = input()
     if answer.lower() == 'n':
-        print('ну и иди нахуй отсюда, дура')
+        print('ok then')
         exit()
     while answer.lower() != 'y' and answer.lower() != 'n':
-        print('еблан тупорылый здесь только два ответа - Y или N, а теперь нормально: ', end='')
+        print('Invalid answer, try again (Y/N): ', end='')
         answer = input()
 
     if answer.lower() == 'n':
-        print('ну и иди нахуй отсюда, дура')
+        print('ok then')
         exit()
 
     if answer.lower() == 'y':
         g = GameField()
         g.initField()
         while g.getGameField():
-            g.printField()
-            print('ХОД: ', end='')
+            print(g.printField(), end='\r')
+            print('Move: ', end='')
             move = input()
+
+            if move.lower() == 'up':
+                g.up()
+            elif move.lower() == 'down':
+                g.down()
+            elif move.lower() == 'left':
+                g.left()
+            elif move.lower() == 'right':
+                g.right()
+            else:
+                print('Invalid move, try again')
+                continue
+
+            if g.checkFor2048():
+                print('Gratz, you won!')
+                g.setGameField(False)
+
+            elif g.isFieldFilled():
+                print('game over')
+                g.setGameField(False)
+
+            g.generateNumOnBoard()
 
 
 

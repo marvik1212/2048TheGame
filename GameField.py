@@ -1,4 +1,6 @@
 import random
+import sys
+
 
 class GameField:
     field: list
@@ -26,10 +28,9 @@ class GameField:
 
     def isFieldFilled(self) -> bool:
         counter = 0
-        for i in range(4):
-            for j in range(4):
-                if self.field != 0:
-                    counter += 1
+        for i in range(16):
+            if self.getGameField()[i] != 0:
+                counter += 1
         return True if counter == 16 else False
 
     def getBigNumsOnBoard(self) -> int:
@@ -52,7 +53,7 @@ class GameField:
         self.field[firstplace] = firstnum
         self.field[secondplace] = secondnum
 
-    def printField(self):
+    def printField(self) -> str:
         tempStr = ''
         tempList = [3, 7, 11, 15]
         for i in range(16):
@@ -61,11 +62,15 @@ class GameField:
             else:
                 tempStr += f'[{self.getGameField()[i]}] '
             if i in tempList:
-                print(tempStr.ljust(5))
-                tempStr = ''
-        print()
+                #print(tempStr.ljust(5))
+                tempStr = tempStr.ljust(5)
+                tempStr += '\n'
+                #tempStr = ''
+        #print()
+        return tempStr
 
-    def moveFunc(self, a, b, c, d): # 0 = f[a], 1 = f[b], 2 = f[c], 3 = f[d], ГДЕ a - клетка притяжения
+
+    def moveFunc(self, a, b, c, d) -> None: # 0 = f[a], 1 = f[b], 2 = f[c], 3 = f[d], ГДЕ a - клетка притяжения
         f = self.getGameField()
         # Логика функции - линейная обработка всех кейсов. Сначала рассматриваются случаи, когда есть что складывать
         while True:
@@ -231,6 +236,28 @@ class GameField:
         self.moveFunc(7, 6, 5, 4)
         self.moveFunc(11, 10, 9, 8)
         self.moveFunc(15, 14, 13, 12)
+
+    def generateNumOnBoard(self) -> None:
+        temp = self.getGameField()
+        tempChoiceList = []
+        for i in range(len(temp)):
+            if temp[i] == 0:
+                tempChoiceList.append(i)
+
+        insertIndex = random.choice(tempChoiceList)
+        numToInsert = random.choice(self.choiceList)
+        temp[insertIndex] = numToInsert
+
+    def setGameField(self, boolValue) -> None:
+        self.gameFlag = boolValue
+
+    def checkFor2048(self) -> bool:
+        temp = self.getGameField()
+        for i in range(16):
+            if temp[i] == 2048:
+                return True
+        return False
+
 
 
 
