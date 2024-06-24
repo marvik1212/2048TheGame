@@ -25,14 +25,6 @@ class GameField:
         self.bigNumsCounter = 0
         self.gameFlag = True
 
-
-    def isFieldFilled(self) -> bool:
-        counter = 0
-        for i in range(16):
-            if self.getGameField()[i] != 0:
-                counter += 1
-        return True if counter == 16 else False
-
     def getBigNumsOnBoard(self) -> int:
         return self.bigNumsCounter
 
@@ -68,7 +60,6 @@ class GameField:
                 #tempStr = ''
         #print()
         return tempStr
-
 
     def moveFunc(self, a, b, c, d) -> None: # 0 = f[a], 1 = f[b], 2 = f[c], 3 = f[d], ГДЕ a - клетка притяжения
         f = self.getGameField()
@@ -243,10 +234,10 @@ class GameField:
         for i in range(len(temp)):
             if temp[i] == 0:
                 tempChoiceList.append(i)
-
-        insertIndex = random.choice(tempChoiceList)
-        numToInsert = random.choice(self.choiceList)
-        temp[insertIndex] = numToInsert
+        if len(tempChoiceList) != 0:
+            insertIndex = random.choice(tempChoiceList)
+            numToInsert = random.choice(self.choiceList)
+            temp[insertIndex] = numToInsert
 
     def setGameField(self, boolValue) -> None:
         self.gameFlag = boolValue
@@ -257,6 +248,34 @@ class GameField:
             if temp[i] == 2048:
                 return True
         return False
+
+    def isGameOver(self) -> bool:
+        counter = 0
+        flag = False
+        for i in range(16):
+            if self.getGameField()[i] != 0:
+                counter += 1
+        temp = self.getGameField()
+        for i in range(16):
+            if i in [3, 7, 11, 15]:
+                continue
+
+            if temp[i] == temp[i + 1]:
+                flag = True
+                break
+        num1 = 4
+        num2 = 8
+        num3 = 12
+        for i in range(4):
+            if temp[i] == temp[num1] or temp[num1] == temp[num2] or temp[num2] == temp[num3]:
+                flag = True
+                break
+            num1 += 1
+            num2 += 1
+            num3 += 1
+
+        return True if counter == 16 and not flag else False
+
 
 
 

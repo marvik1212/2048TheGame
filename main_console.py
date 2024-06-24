@@ -19,7 +19,7 @@ def main():
         g = GameField()
         g.initField()
         while g.getGameField():
-            print(g.printField(), end='\r')
+            print(g.printField())
             print('Move: ', end='')
             move = input()
 
