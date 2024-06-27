@@ -1,7 +1,6 @@
 import random
 
 
-
 class GameField:
     field: list
     gameFlag: bool

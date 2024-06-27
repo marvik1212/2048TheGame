@@ -39,7 +39,7 @@ def main():
                 print('Gratz, you won!')
                 g.setGameField(False)
 
-            elif g.isFieldFilled():
+            elif g.isGameOver():
                 print('game over')
                 g.setGameField(False)
 

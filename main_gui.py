@@ -80,11 +80,11 @@ class KeyboardEventApp(QMainWindow):
                 tempList1[i].setStyleSheet(f"background-color: {self.numAndColor[str(tempList2[i])]}")
 
     def keyPressEvent(self, event):
-        if self.gameField.isGameOver():
-            self.popup_defeat()
-
         if self.gameField.checkFor2048():
             self.popup_win()
+
+        if self.gameField.isGameOver():
+            self.popup_defeat()
 
         if event.text() == 'w' or event.text() == 'ц':
             self.gameField.up()
