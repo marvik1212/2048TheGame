@@ -18,7 +18,7 @@ def main():
     if answer.lower() == 'y':
         g = GameField()
         g.initField()
-        while g.getGameField():
+        while g.getGameFlag():
             print(g.printField())
             print('Move: ', end='')
             move = input()
@@ -37,11 +37,11 @@ def main():
 
             if g.checkFor2048():
                 print('Gratz, you won!')
-                g.setGameField(False)
+                g.setGameFlag(False)
 
             elif g.isGameOver():
                 print('game over')
-                g.setGameField(False)
+                g.setGameFlag(False)
 
             g.generateNumOnBoard()
 

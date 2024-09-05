@@ -238,8 +238,11 @@ class GameField:
             numToInsert = random.choice(self.choiceList)
             temp[insertIndex] = numToInsert
 
-    def setGameField(self, boolValue) -> None:
+    def setGameFlag(self, boolValue) -> None:
         self.gameFlag = boolValue
+
+    def getGameFlag(self) -> bool:
+        return self.gameFlag
 
     def checkFor2048(self) -> bool:
         temp = self.getGameField()

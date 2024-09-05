@@ -5,7 +5,7 @@ from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
 
 
-class KeyboardEventApp(QMainWindow):
+class TheGame(QMainWindow):
 
     def generateButtonWidget(self) -> QPushButton:
         temp = QPushButton()
@@ -120,7 +120,7 @@ class KeyboardEventApp(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
-    window = KeyboardEventApp()
+    window = TheGame()
     window.show()
     sys.exit(app.exec_())
 main()
